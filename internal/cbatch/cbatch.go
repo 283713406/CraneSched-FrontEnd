@@ -76,6 +76,11 @@ func ProcessCbatchArgs(cmd *cobra.Command, args []CbatchArg) (bool, *protos.Task
 				return false, nil
 			}
 			task.CpusPerTask = num
+		case "--gres":
+			gresMap := util.ParseGres(arg.val)
+			task.Resources.DedicatedResource = &protos.Resources_DedicatedResourceReq{
+				DedicatedResourceReq: gresMap,
+			}
 		case "--ntasks-per-node":
 			num, err := strconv.ParseUint(arg.val, 10, 32)
 			if err != nil {
@@ -151,6 +156,12 @@ func ProcessCbatchArgs(cmd *cobra.Command, args []CbatchArg) (bool, *protos.Task
 	}
 	if cmd.Flags().Changed("cpus-per-task") {
 		task.CpusPerTask = FlagCpuPerTask
+	}
+	if FlagGres != "" {
+		gresMap := util.ParseGres(FlagGres)
+		task.Resources.DedicatedResource = &protos.Resources_DedicatedResourceReq{
+			DedicatedResourceReq: gresMap,
+		}
 	}
 	if cmd.Flags().Changed("ntasks-per-node") {
 		task.NtasksPerNode = FlagNtasksPerNode

@@ -34,6 +34,7 @@ var (
 	FlagAccount       string
 	FlagQos           string
 	FlagCwd           string
+	FlagGres          string
 	FlagNodelist      string
 	FlagExcludes      string
 
@@ -71,6 +72,7 @@ func init() {
 	RootCmd.Flags().StringVarP(&FlagAccount, "account", "A", "", "account used by the task")
 	RootCmd.Flags().StringVar(&FlagCwd, "chdir", "", "working directory of the task")
 	RootCmd.Flags().StringVarP(&FlagQos, "qos", "q", "", "quality of service")
+	RootCmd.Flags().StringVar(&FlagGres, "gres", "", "name,type,num of gres required per task")
 	RootCmd.Flags().StringVarP(&FlagNodelist, "nodelist", "w", "", "List of specific nodes to be allocated to the job")
 	RootCmd.Flags().StringVarP(&FlagExcludes, "exclude", "x", "", "exclude a specific list of hosts")
 }
