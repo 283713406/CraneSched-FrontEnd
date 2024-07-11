@@ -396,7 +396,7 @@ CforedCrunStateMachineLoop:
 					} else {
 						switch crunRequest.Type {
 						case protos.StreamCrunRequest_TASK_IO_FORWARD:
-							log.Debug("[Crun->Cfored->Craned] Receive TASK_IO_FORWARD Request")
+							log.Debug("[Crun->Cfored->Craned] Receive TASK_IO_FORWARD Request to task #%d, msg %s", crunRequest.GetPayloadTaskIoForwardReq().GetTaskId(), crunRequest.GetPayloadTaskIoForwardReq().GetMsg())
 							gCranedChanKeeper.forwardCrunRequestToCranedChannels(crunRequest, execCranedIds)
 
 						case protos.StreamCrunRequest_TASK_COMPLETION_REQUEST:
