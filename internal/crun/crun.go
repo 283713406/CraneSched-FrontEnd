@@ -241,6 +241,9 @@ CrunStateMachineLoop:
 					}
 				case protos.StreamCforedCrunReply_TASK_CANCEL_REQUEST:
 					state = TaskKilling
+				case protos.StreamCforedCrunReply_TASK_COMPLETION_ACK_REPLY:
+					fmt.Println("Task failed ")
+					break CrunStateMachineLoop
 				default:
 					log.Fatalf("Received unhandeled msg type %s", cforedReply.Type.String())
 					state = TaskKilling
